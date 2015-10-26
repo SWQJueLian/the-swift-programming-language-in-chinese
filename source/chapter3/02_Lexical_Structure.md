@@ -17,7 +17,7 @@
 - [字面量（*Literals*）](#literals)
 - [运算符（*Operators*）](#operators)
 
-Swift 的“词法结构（*lexical structure*）”描述了能构成该语言中合法标记（*tokens*）的字符序列。这些合法标记组成了语言中最底层的构建基块，并在之后的章节中用于描述语言的其他部分。
+Swift 的“词法结构（*lexical structure*）”描述了能构成该语言中合法标记（*tokens*）的字符序列。这些合法标记组成了语言中最底层的构建基块，并在之后的章节中用于描述语言的其他部分。一个合法标记由一个标识符、关键字、标点符号、文字或运算符组成。
 
 通常情况下，标记是在随后将介绍的语法约束下，由 Swift 源文件的输入文本中提取可能的最长子串生成。这种方法称为“最长匹配项（*longest match*）”，或者“最大适合”（*maximal munch*）。
 
@@ -28,12 +28,14 @@ Swift 的“词法结构（*lexical structure*）”描述了能构成该语言�
 
 注释（*comments*）被编译器当作空白处理。单行注释由 `//` 开始直至遇到换行符（*line feed*）（U+000A）或者回车符（*carriage return*）（U+000D）。多行注释由 `/*` 开始，以 `*/` 结束。注释允许嵌套，但注释标记必须匹配。
 
+就像 [标记格式引用（Markup Formatting Reference）](https://developer.apple.com/library/prerelease/ios/documentation/Xcode/Reference/xcode_markup_formatting_ref/index.html#//apple_ref/doc/uid/TP40016497) 所说的那样，注释可以包含附加的格式和标记。
+
 <a id="identifiers"></a>
 ## 标识符
 
 标识符（*identifiers*）可以由以下的字符开始：大写或小写的字母 `A` 到 `Z`、下划线 `_`、基本多文种平面（*Basic Multilingual Plane*）中的 Unicode 非组合字符以及基本多文种平面以外的非专用区（*Private Use Area*）字符。首字符之后，允许使用数字和 Unicode 字符组合。
 
-使用保留字（*reserved word*）作为标识符，需要在其前后增加反引号 `` `。例如，`class` 不是合法的标识符，但可以使用 <code>\`class\`</code>。反引号不属于标识符的一部分，<code>\`x\`</code> 和 `x` 表示同一标识符。
+使用保留字（*reserved word*）作为标识符，需要在其前后增加反引号 \`。例如，`class` 不是合法的标识符，但可以使用 \`class\`。反引号不属于标识符的一部分，\`x\` 和 `x` 表示同一标识符。
 
 闭包（*closure*）中如果没有明确指定参数名称，参数将被隐式命名为 `$0`、`$1`、`$2`等等。 这些命名在闭包作用域范围内是合法的标识符。
 
@@ -207,7 +209,14 @@ true			   // 布尔型字面量
 let x = 3; "1 2 \(x)"
 ```
 
-字符串字面量的默认推导类型为 `String`。组成字符串的字符默认推导类型为 `Character`。更多有关 `String` 和 `Character` 的信息请参照 [字符串和字符](../chapter2/03_Strings_and_Characters.html)。
+字符串字面量的默认推导类型为 `String`。组成字符串的字符默认推导类型为 `Character`。更多有关 `String` 和 `Character` 的信息请参照 [字符串和字符](../chapter2/03_Strings_and_Characters.html) 以及[字符串结构参考](https://developer.apple.com/library/prerelease/ios/documentation/Swift/Reference/Swift_String_Structure/index.html#//apple_ref/doc/uid/TP40015181)。
+
+用 `＋` 操作符连接的字符型字面量是在编译时进行连接的。比如下面的 `textA` 和 `textB` 时完全一样的—— `textA` 没有任何运行时的连接操作。
+
+```
+let textA = "Hello " + "world"
+let textB = "Hello world"
+```
 
 > 字符型字面量语法  
 > *字符串字面量* → **"** [*引用文本*](#quoted_text)<sub>可选</sub> **"**  
