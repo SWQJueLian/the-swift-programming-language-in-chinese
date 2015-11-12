@@ -11,7 +11,8 @@
 > [BridgeQ](https://github.com/WXGBridgeQ)
 
 > 2.1 
-> 翻译+校队：[shanks](http://codebuild.me)
+> 翻译：[mmoaay](https://github.com/mmoaay), [shanks](http://codebuild.me)
+> 校队：[shanks](http://codebuild.me)
 
 本页包含内容：
 
@@ -530,7 +531,7 @@ let evenInts: [Number] = [0, 2, 4, 6].map(f)
 
 为间接使用特殊的枚举用例，使用`indirect`声明修饰符标记。
 
-> enum Tree<T> {
+> enum Tree&lt;T&gt; {
 > 		case Empty
 > 		indirect case Node(value: T, left: Tree, right:Tree)
 > }
